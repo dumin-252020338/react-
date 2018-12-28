@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button{
+            width:100px;
+            height:30px;
+            font-size: 20px;
+        }
+        .btn1{
+            background-color:red;
+        }
+        .btn2{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'></div>
+    <div id='root'></div>
+    <div id='root1'></div>
+    <div id='root2'></div>
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        class Loninout extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    isLogining:false,
+                };
+                this.loginClick = this.loginClick.bind(this);
+                this.logoutClick = this.logoutClick.bind(this);
+            }
+            loginClick(){
+                this.setState({ isLogining:true})
+            }
+            logoutClick(){
+                this.setState({ isLogining:false})
+            }
+            render(){
+                const isLogining = this.state.isLogining
+                let button =null
+                console.log(isLogining +'1')
+                if(isLogining){
+                    button = <LogoutButton onClick={this.logoutClick} />
+                }else{
+                    button = <LoginButton onClick={this.loginClick} />
+                }
+                return <div><Con isLogining={isLogining}/>{button}</div>
+            }
+        }
+        //登录内容
+        function LoginCon(props){
+            return <h1> 用户已登录 </h1>
+        }
+        //退出内容
+        function LogOutCon(props){
+            return <h1> 请先登录</h1>
+        }
+        //根据布尔值显示哪部分
+        function Con(props){
+            const isLogining = props.isLogining
+            console.log(isLogining +'2')
+            if(isLogining){
+                return <LoginCon />
+            }else{
+                return <LogOutCon />
+            }
+        }
+        //登录按钮
+        function LoginButton(props){
+            console.log(props)
+            return <button className='btn1' onClick={props.loginClick}>登录</button>
+        }
+        //退出按钮
+        function LogoutButton(props){
+            return <button className='btn2' onClick={props.logoutClick}>退出</button>
+        }
+        ReactDOM.render(
+            <Loninout />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
