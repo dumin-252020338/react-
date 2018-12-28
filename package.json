@@ -1,0 +1,17 @@
+{
+  "name": "1-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-standalone": "^6.26.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "start": "^5.1.0"
+  }
+}
