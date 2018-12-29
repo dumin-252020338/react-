@@ -46,27 +46,32 @@
             render(){
                 const isLogining = this.state.isLogining
                 let button =null
-                console.log(isLogining +'1')
                 if(isLogining){
+                    // console.log(this);                    
+                    // console.log(this.logoutClick);
                     button = <LogoutButton onClick={this.logoutClick} />
                 }else{
+                    // console.log(this.loginClick);
                     button = <LoginButton onClick={this.loginClick} />
                 }
-                return <div><Con isLogining={isLogining}/>{button}</div>
+                console.log(button)
+                return <div><Con isLogining={isLogining} />{button}</div>
             }
         }
         //登录内容
         function LoginCon(props){
+            console.log('已登录，欢迎回来1')
             return <h1> 用户已登录 </h1>
         }
         //退出内容
         function LogOutCon(props){
+            // console.log('请先登录2')
             return <h1> 请先登录</h1>
         }
         //根据布尔值显示哪部分
         function Con(props){
             const isLogining = props.isLogining
-            console.log(isLogining +'2')
+            // console.log(isLogining +'2')
             if(isLogining){
                 return <LoginCon />
             }else{
@@ -75,12 +80,13 @@
         }
         //登录按钮
         function LoginButton(props){
-            console.log(props)
-            return <button className='btn1' onClick={props.loginClick}>登录</button>
+            // console.log(props)
+            // console.log(props.onClick)
+            return <button onClick={props.onClick}>登录</button>
         }
         //退出按钮
         function LogoutButton(props){
-            return <button className='btn2' onClick={props.logoutClick}>退出</button>
+            return <button onClick={props.onClick}>退出</button>
         }
         ReactDOM.render(
             <Loninout />,

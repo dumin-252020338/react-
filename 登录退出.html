@@ -36,9 +36,9 @@
                 const isLoggedIn = this.state.isLoggedIn;
                 let button;
                 if (isLoggedIn) {
-                    button = < LogoutButton onClick = {this.handleLogoutClick}/>;
+                    button = <LogoutButton onClick = {this.handleLogoutClick} />;
                 } else {
-                    button = <LoginButton onClick = {this.handleLoginClick}/>;
+                    button = <LoginButton onClick = {this.handleLoginClick} />;
                 }
                 return ( 
                     <div><Greeting isLoggedIn = {isLoggedIn}/>{button}</div>
@@ -46,9 +46,11 @@
             }
         }
         function UserGreeting(props) {
+            console.log('已登录，欢迎回来')
             return <h1> 已登录，欢迎回来 </h1>;
         }
         function GuestGreeting(props) {
+            console.log('请先登录')
             return <h1> 请先登录 </h1>;
         }
         function Greeting(props) {
@@ -59,7 +61,7 @@
             }
             return <GuestGreeting /> ;
         }
-         
+        //登录按钮         
         function LoginButton(props) {
             return ( 
                 <button onClick = {props.onClick}> 登录 </button>);
