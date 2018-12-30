@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react</title>
+    <style>
+        h1{
+            background-color:red;
+            cursor: pointer;
+        }
+        h1>ol{
+            background-color:pink;
+        }
+        h1>ol>li{
+            background-color:rgb(133, 53, 122);
+        }
+        .smallTitle{
+            background-color: rgb(40, 103, 185);
+            cursor: pointer;
+        }
+        p{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./data.js"></script>
+    <script type="text/babel">
+        class Info extends React.Component{
+            render(){
+                console.log(this.props)
+                return(
+                    <div>
+                        {
+                            this.props.info.map((v, i)=>{
+                                return(
+                                    <div key={i}>
+                                        <p>{'姓名：' + this.props.info[i].name}</p>
+                                        <p>{'性别：' + this.props.info[i].sex}</p>
+                                        <p>{'爱好：' + this.props.info[i].like}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
+        class List extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    onOffsmallTitle:true
+                }
+            }
+            smallTitleClick(){
+                this.setState({
+                    onOffsmallTitle:!this.state.onOffsmallTitle
+                })
+            }
+            render(){
+                // console.log(this.props)
+                return(
+                    <div>
+                        <ol>
+                            {
+                                this.props.keyword.map((v, i)=>{
+                                    const smallTitle = '列表'
+                                    // console.log(this.props.keyword[i].name)
+                                    return(
+                                        <li key={i}>
+                                            <div className='smallTitle' onClick={this.smallTitleClick}>{smallTitle + (i+1)}</div>
+                                            <Info info={this.props.keyword} />
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ol>
+                    </div>
+                )
+            }
+        }
+
+
+        class Con extends React.Component{
+            constructor(props){
+                super(props)
+                this.state = {
+                    onOffTitle:true
+                }
+                this.wrapClick = this.wrapClick.bind(this)
+            }
+            wrapClick(){
+                this.setState({
+                    onOffTitle:!this.state.onOffTitle
+                })
+                console.log(this)
+            }
+            render(){
+                return(
+                    <div>
+                        <h1 onClick={this.wrapClick}>{this.props.name}</h1>
+                        {this.state.onOffTitle?<List keyword={this.props.list} />:null}
+                        
+                    </div>
+                )
+            }
+        }
+
+        class Wrap extends React.Component{
+            getData(){//拿到数据
+                return dataList
+            }
+            render(){
+                const data = this.getData()
+                // console.log(Object.keys(data))
+                return(
+                    <div>
+                        {
+                            Object.keys(data).map((v, i)=>{
+                                return (
+                                    <Con 
+                                        key={i} 
+                                        // data={data[v].name}   
+                                        {...data[v]} 
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
+
+
+        ReactDOM.render(
+            <Wrap />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
