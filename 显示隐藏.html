@@ -65,24 +65,20 @@
                 })
             }
             render(){
-                // console.log(this.props)
                 return(
-                    <div>
-                        <ol>
-                            {
-                                this.props.keyword.map((v, i)=>{
-                                    const smallTitle = '列表'
-                                    // console.log(this.props.keyword[i].name)
-                                    return(
-                                        <li key={i}>
-                                            <div className='smallTitle' onClick={this.smallTitleClick}>{smallTitle + (i+1)}</div>
-                                            <Info info={this.props.keyword} />
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ol>
-                    </div>
+                    <ol>
+                        {
+                            this.props.keyword.map((v, i)=>{
+                                const smallTitle = '列表'
+                                return(
+                                    <li key={i}>
+                                        <div className='smallTitle' onClick={this.smallTitleClick}>{smallTitle + (i+1)}</div>
+                                        <Info info={this.props.keyword} />
+                                    </li>
+                                )
+                            })
+                        }
+                    </ol>
                 )
             }
         }
@@ -92,7 +88,7 @@
             constructor(props){
                 super(props)
                 this.state = {
-                    onOffTitle:true
+                    onOffTitle:this.props.show
                 }
                 this.wrapClick = this.wrapClick.bind(this)
             }
@@ -114,12 +110,18 @@
         }
 
         class Wrap extends React.Component{
+            constructor(props){
+                super(props)
+                this.state = {
+                    arr: [0, 0, 0]
+                }
+            }
             getData(){//拿到数据
                 return dataList
             }
+
             render(){
                 const data = this.getData()
-                // console.log(Object.keys(data))
                 return(
                     <div>
                         {
@@ -127,8 +129,8 @@
                                 return (
                                     <Con 
                                         key={i} 
-                                        // data={data[v].name}   
-                                        {...data[v]} 
+                                        {...data[v]} //解构数据
+                                        show={this.state.arr[i]}
                                     />
                                 )
                             })
