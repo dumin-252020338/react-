@@ -34,11 +34,15 @@
     <script type="text/babel">
         class Info extends React.Component{
             render(){
-                console.log(this.props)
+                // console.log(this.props.info[0].name)
+                // console.log(this.props.info[0].sex)
                 return(
                     <div>
                         {
                             this.props.info.map((v, i)=>{
+                                // console.log(this.props.info[0])
+                                console.log(v)
+                                // console.log(i)
                                 return(
                                     <div key={i}>
                                         <p>{'姓名：' + this.props.info[i].name}</p>
@@ -52,28 +56,61 @@
                 )
             }
         }
+
         class List extends React.Component{
             constructor(props){
                 super(props)
                 this.state={
                     onOffsmallTitle:true
                 }
+                this.smallTitleClick = this.smallTitleClick.bind(this)
             }
             smallTitleClick(){
                 this.setState({
                     onOffsmallTitle:!this.state.onOffsmallTitle
                 })
+                // console.log(this.state)
+                let smallTitle = document.querySelectorAll('ol .smallTitle')
+                let active = document.querySelectorAll('ol .smallTitle .active')
+                // console.log(smallTitle)
+                // console.log(active)
+                let len = active.length
+                // for(let i=0;i<len; i++){
+                //     console.log(i)
+                //     active[i].style.display = 'none'
+                // }
+                for (let i=0;i<len; i++) {
+                    // console.log(iterator)
+                    active.onclick = function fn() {
+                        // console.log(i)
+                        // console.log(active)
+                        active.style.display='none'
+                    }
+                }
             }
             render(){
                 return(
                     <ol>
                         {
                             this.props.keyword.map((v, i)=>{
+                                let name = this.props.keyword[i].name
+                                let sex = this.props.keyword[i].sex
+                                let like = this.props.keyword[i].like
+                                console.log(typeof name)
+                                // this.props.keyword[i].name.map = function(a, b){
+                                //     console.log('1')
+                                // }
                                 const smallTitle = '列表'
                                 return(
-                                    <li key={i}>
-                                        <div className='smallTitle' onClick={this.smallTitleClick}>{smallTitle + (i+1)}</div>
-                                        <Info info={this.props.keyword} />
+                                    <li key={i} onClick={this.smallTitleClick}>
+                                        <div className='smallTitle' >列表{i+1}
+                                            <p className='active'>
+                                                {'姓名：' + name}<br/>
+                                                {'性别：' + sex}<br/>
+                                                {'爱好：' + like}<br/>
+                                            </p>
+                                        </div>
+                                        {/*<Info info={this.props.keyword} />*/}
                                     </li>
                                 )
                             })
@@ -82,7 +119,6 @@
                 )
             }
         }
-
 
         class Con extends React.Component{
             constructor(props){
@@ -96,14 +132,13 @@
                 this.setState({
                     onOffTitle:!this.state.onOffTitle
                 })
-                console.log(this)
+                // console.log(this)
             }
             render(){
                 return(
                     <div>
                         <h1 onClick={this.wrapClick}>{this.props.name}</h1>
                         {this.state.onOffTitle?<List keyword={this.props.list} />:null}
-                        
                     </div>
                 )
             }
@@ -113,7 +148,7 @@
             constructor(props){
                 super(props)
                 this.state = {
-                    arr: [0, 0, 0]
+                    arr: [1, 0, 0]
                 }
             }
             getData(){//拿到数据

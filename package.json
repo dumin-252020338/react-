@@ -1,17 +1,45 @@
 {
-  "name": "1-react",
+  "name": "react-yiyuan",
   "version": "1.0.0",
-  "description": "",
+  "description": "2019-01-03",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "babel-standalone": "^6.26.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.7.0",
+    "react-router": "^4.3.1",
     "start": "^5.1.0"
-  }
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.2",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.28.3",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "scripts": {
+    "test": "first"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumin-252020338/react-study.git"
+  },
+  "keywords": [
+    "252020338"
+  ],
+  "author": "yiyuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dumin-252020338/react-study/issues"
+  },
+  "homepage": "https://github.com/dumin-252020338/react-study#readme"
 }
