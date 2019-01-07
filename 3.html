@@ -35,6 +35,8 @@
                 menus += '<ul>';
                 for (var i in childArry) {
                     menus += '<li>' + childArry[i].name;
+                    // console.log(childArry[i].id)00
+                    console.log(arry)
                     GetData(childArry[i].id, arry);
                     menus += '</li>';
                 }
@@ -47,11 +49,17 @@
         function GetParentArry(id, arry) {
             var newArry = new Array();
             for (var i in arry) {
-            // console.log(i, arry)
-                if (arry[i].pid == id)
+            // console.log(i)
+            // console.log(arry[i].id)
+                if (arry[i].pid == id){
+                    // console.log(arry[i].pid)
+                    // console.log(id)
                     newArry.push(arry[i]);
+
                 }
-                console.log(newArry)
+                }
+                    // console.log(newArry)
+                // console.log(newArry)
             return newArry;
         }
     </script>

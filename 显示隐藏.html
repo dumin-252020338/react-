@@ -34,20 +34,22 @@
     <script type="text/babel">
         class Info extends React.Component{
             render(){
-                // console.log(this.props.info[0].name)
-                // console.log(this.props.info[0].sex)
+                // console.log(this.props.info)
+                this.props.info.map((v, i)=>{
+                    // console.log(this.props.info)
+                    console.log(v.sex)
+                    console.log(v.like)
+                    // console.log(i)
+                })
                 return(
                     <div>
                         {
                             this.props.info.map((v, i)=>{
-                                // console.log(this.props.info[0])
-                                console.log(v)
-                                // console.log(i)
+                                // console.log(this.props.info)
                                 return(
                                     <div key={i}>
-                                        <p>{'姓名：' + this.props.info[i].name}</p>
-                                        <p>{'性别：' + this.props.info[i].sex}</p>
-                                        <p>{'爱好：' + this.props.info[i].like}</p>
+                                        {/*<p>{'性别：' + this.props.info[i].sex}</p>
+                                        <p>{'爱好：' + this.props.info[i].like}</p>*/}
                                     </div>
                                 )
                             })
@@ -69,21 +71,11 @@
                 this.setState({
                     onOffsmallTitle:!this.state.onOffsmallTitle
                 })
-                // console.log(this.state)
                 let smallTitle = document.querySelectorAll('ol .smallTitle')
                 let active = document.querySelectorAll('ol .smallTitle .active')
-                // console.log(smallTitle)
-                // console.log(active)
                 let len = active.length
-                // for(let i=0;i<len; i++){
-                //     console.log(i)
-                //     active[i].style.display = 'none'
-                // }
                 for (let i=0;i<len; i++) {
-                    // console.log(iterator)
                     active.onclick = function fn() {
-                        // console.log(i)
-                        // console.log(active)
                         active.style.display='none'
                     }
                 }
@@ -96,19 +88,14 @@
                                 let name = this.props.keyword[i].name
                                 let sex = this.props.keyword[i].sex
                                 let like = this.props.keyword[i].like
-                                console.log(typeof name)
-                                // this.props.keyword[i].name.map = function(a, b){
-                                //     console.log('1')
-                                // }
-                                const smallTitle = '列表'
                                 return(
                                     <li key={i} onClick={this.smallTitleClick}>
-                                        <div className='smallTitle' >列表{i+1}
-                                            <p className='active'>
-                                                {'姓名：' + name}<br/>
+                                        <div className='smallTitle'  >{'姓名：' + name}
+                                            {/*<p className='active'>
                                                 {'性别：' + sex}<br/>
-                                                {'爱好：' + like}<br/>
-                                            </p>
+                                                {'爱好：' + like}
+                                            </p>*/}
+                                            <Info info={this.props.keyword} />
                                         </div>
                                         {/*<Info info={this.props.keyword} />*/}
                                     </li>

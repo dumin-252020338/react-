@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>44</title>
+    <style>
+        div#box{
+            width: 500px;
+            height: 15000px;
+            background-color: red;
+        }
+        #box1{
+            position: sticky;
+            top:20px;
+            left: 500px;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        #box2{
+            position: sticky;
+            top:50px;
+            left: 200px;
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+        <div id='box1'></div>
+        <div id='box2'></div>
+        <div id='box3'></div>
+        <div id='box3'></div>
+        <div id='box3'></div>
+        <div id='box3'></div>
+        <div id='box3'></div>
+        <div id='box3'></div>
+    </div>
+    <script>
+        let arr=[[1,2,3],[4,5,6]]
+        function fn(){
+            let arr1=[]
+            arr.forEach((v, i)=>{
+                arr1=arr1.concat(v)
+            })
+            return arr1
+        }
+        console.log(fn())
+
+        let arr2 = [[1, 2, 3],[{'a':'q','b':'w'},'i am string','000']];
+        function reduceDimension2(arr2) {
+            return Array.prototype.concat.apply([], arr2);
+            // [].concat(arr2[0], arr2[1], ...);
+        }
+        console.log(reduceDimension2(arr2))
+
+        let arr3=[
+            [
+                {arr1:'arr1'},
+                {arr2:'arr2'},
+                {arr3:'arr3'},
+            ],
+            [
+                {arr12:'arr12'},
+                {arr22:'arr22'},
+                {arr32:'arr32'},
+            ],
+            [
+                {arr13:'arr13'},
+                {arr23:'arr23'},
+                {arr33:'arr33'},
+            ],
+            [
+                {arr14:'arr14'},
+                {arr24:'arr24'},
+                {arr34:'arr34'},
+                {arr44:'arr44',arr441:'arr441'},
+            ]
+        ]
+        let arr4=[]
+        let arr5=[]
+        let arr6 = [];
+        arr3.map((v, i)=>{
+            for (key in v) {
+                arr4.push(v[key])
+            }
+            v.map((x, i)=>{
+                arr5.push(x)
+            })
+        })
+        console.log(arr4)
+        console.log(arr5)
+
+        for( i in arr3){
+            for( j in arr3[i]) {
+                arr6.push(arr3[i][j]);
+            }
+        }
+        console.log(arr6)
+
+        let arr7 = [].concat.apply([], arr3)
+        console.log(arr7)
+        console.log([].concat.apply([], arr3))
+    </script>
+</body>
+</html>

@@ -3,17 +3,17 @@ const dataList = {
         "name":'同事',
         "list":[
             {
-                "name":'q',
+                "name":'q1',
                 "sex":'男',
                 "like":'打篮球'
             },
             {
-                "name":'w',
+                "name":'w2',
                 "sex":'男',
                 "like":'打乒乓球'
             },
             {
-                "name":'e',
+                "name":'e3',
                 "sex":'男',
                 "like":'踢足球'
             }
@@ -23,22 +23,22 @@ const dataList = {
         "name":'亲戚',
         "list":[
             {
-                "name":'a',
+                "name":'a1',
                 "sex":'女',
                 "like":'打篮球a'
             },
             {
-                "name":'s',
+                "name":'s2',
                 "sex":'男',
                 "like":'打篮球s'
             },
             {
-                "name":'d',
+                "name":'d3',
                 "sex":'男',
                 "like":'打篮球d'
             },
             {
-                "name":'f',
+                "name":'f4',
                 "sex":'男',
                 "like":'打篮球f'
             }
@@ -48,27 +48,27 @@ const dataList = {
         "name":'朋友',
         "list":[
             {
-                "name":'z',
+                "name":'z1',
                 "sex":'男',
                 "like":'打篮球z'
             },
             {
-                "name":'x',
+                "name":'x2',
                 "sex":'男',
                 "like":'打篮球x'
             },
             {
-                "name":'c',
+                "name":'c3',
                 "sex":'男',
                 "like":'打篮球c'
             },
             {
-                "name":'v',
+                "name":'v4',
                 "sex":'男',
                 "like":'打篮球v'
             },
             {
-                "name":'b',
+                "name":'b5',
                 "sex":'男',
                 "like":'打篮球b'
             }
