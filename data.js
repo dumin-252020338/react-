@@ -9,7 +9,7 @@ const dataList = {
             },
             {
                 "name":'w2',
-                "sex":'男',
+                "sex":'女',
                 "like":'打乒乓球'
             },
             {

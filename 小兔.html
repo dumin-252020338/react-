@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let yt = 1 //幼兔
+            xt = 0 //小兔
+            ct = 0 //成兔
+            m = 8  //8个月后
+            for(let i=1; i<= m; i++){
+                ct = ct + xt 
+                xt = yt
+                yt = ct
+            }
+        // console.log(m + '个月后幼兔：' + yt)    
+        // console.log(m + '个月后小兔：' + xt)
+        // console.log(m + '个月后成兔：' + ct)
+        console.table([m + '个月后幼兔：' + yt, m + '个月后小兔：' + xt, m + '个月后成兔：' + ct])
+    </script>
+</body>
+</html>
