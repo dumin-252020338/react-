@@ -3,19 +3,24 @@ const dataList = {
         "name":'同事',
         "list":[
             {
-                "name":'q1',
+                "name":'孙悟空',
                 "sex":'男',
                 "like":'打篮球'
             },
             {
-                "name":'w2',
+                "name":'达摩',
                 "sex":'女',
                 "like":'打乒乓球'
             },
             {
-                "name":'e3',
+                "name":'李信',
                 "sex":'男',
-                "like":'踢足球'
+                "like":'开双刀'
+            },
+            {
+                "name":'花木兰',
+                "sex":'男',
+                "like":'切重剑'
             }
         ]
     },
@@ -23,24 +28,24 @@ const dataList = {
         "name":'亲戚',
         "list":[
             {
-                "name":'a1',
+                "name":'鲁班',
+                "sex":'男',
+                "like":'一直平A'
+            },
+            {
+                "name":'虞姬',
                 "sex":'女',
-                "like":'打篮球a'
+                "like":'翘屁股'
             },
             {
-                "name":'s2',
+                "name":'后羿',
                 "sex":'男',
-                "like":'打篮球s'
+                "like":'大鸟'
             },
             {
-                "name":'d3',
+                "name":'狄仁杰',
                 "sex":'男',
-                "like":'打篮球d'
-            },
-            {
-                "name":'f4',
-                "sex":'男',
-                "like":'打篮球f'
+                "like":'扔飞镖'
             }
         ]
     },
@@ -48,29 +53,24 @@ const dataList = {
         "name":'朋友',
         "list":[
             {
-                "name":'z1',
+                "name":'诸葛亮',
                 "sex":'男',
-                "like":'打篮球z'
+                "like":'贴身打'
             },
             {
-                "name":'x2',
-                "sex":'男',
-                "like":'打篮球x'
+                "name":'貂蝉',
+                "sex":'女',
+                "like":'飞来飞去'
             },
             {
-                "name":'c3',
+                "name":'张良',
                 "sex":'男',
-                "like":'打篮球c'
+                "like":'放法阵'
             },
             {
-                "name":'v4',
-                "sex":'男',
-                "like":'打篮球v'
-            },
-            {
-                "name":'b5',
-                "sex":'男',
-                "like":'打篮球b'
+                "name":'妲己',
+                "sex":'女',
+                "like":'专治花里胡哨'
             }
         ]
     }

@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>react</title>
     <style>
+        *{
+            margin:0;
+            padding:0;
+        }
         h2{
             background-color:rgb(194, 158, 158);
             cursor: pointer;
@@ -13,10 +17,11 @@
         h2>ol{
             background-color:pink;
         }
-        h1>ol>li{
+        li{
             background-color:rgb(133, 53, 122);
+            margin:20px;
         }
-        .smallTitle{
+        .smallTitleClick{
             background-color: rgb(40, 103, 185);
             cursor: pointer;
         }
@@ -27,6 +32,19 @@
             height: 0px;
             overflow: hidden;
             transition: 1s;
+            margin:10px;
+        }
+        .insideToggle{
+            height: 20px;
+            overflow: hidden;
+            transition: 2s;
+            margin:10px;
+        }
+        .nameDiv .sexDiv .likeDiv{
+            background-color: rgb(131, 94, 161);
+        }
+        p{
+            cursor: pointer;
         }
     </style>
 </head>
@@ -38,25 +56,91 @@
     <script src="./data.js"></script>
     <script type="text/babel">
         class Info extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    onOff:this.props.active
+                }
+                this.smallTitleClick = this.smallTitleClick.bind(this)
+                this.insideToggleList = this.insideToggleList.bind(this)
+            }
+
+            insideToggleList(onOff){
+                // console.log(this.refs.insideToggle)
+                const insideToggle = this.refs.insideToggle
+                if(onOff){
+                    console.log('1')
+                    insideToggle.style.height = insideToggle.scrollHeight+'px'
+                }else{
+                    insideToggle.style.height = '20px'
+                }
+            }
+            //生命周期
+            componentDidMount() {
+                console.log('2')
+                // console.log(this.state.onOff)
+                this.insideToggleList(this.state.onOff)
+            }
+            // shouldComponentUpdate(nextProps, nextState, nextContext) {
+            //     console.log(nextProps)
+            //     // console.log(nextState)
+            //     if(this.state.onOff != nextProps.show){
+            //         this.setState({
+            //             onOff : nextProps.active
+            //         })
+            //     }
+            //     if(this.state.onOff != nextState.onOff){
+            //         this.insideToggleList(nextState.onOff)                                                                                                 
+            //     }
+            //     return true
+            // }
+
+            smallTitleClick(idx){
+                // console.log(this.props.idx)
+                let onOff = !this.state.onOff
+                this.setState({
+                    onOff
+                })
+                if(onOff){
+                    this.props.smallTitleClickList(this.props.idx)  
+                }
+            }
             render(){
+                let name = this.props.infoName.split(' ')
+                let sex = this.props.infoSex.split(' ')
+                let like = this.props.infoLike.split(' ')
                 return(
-                    <ol>
+                    <div>
                         {
-                            this.props.info.map((v, i)=>{
-                                // console.log(this.props.info)
-                                let name = this.props.info[i].name
-                                let sex = this.props.info[i].sex
-                                let like = this.props.info[i].like
-                                return(
-                                    <li key={i}>
-                                        <p>姓名：{name}</p>
-                                        <p>性别：{sex}</p>
-                                        <p>爱好：{like}</p>
-                                    </li>
-                                )
+                            name.map((name, i)=>{
+                                    return (
+                                        <div key={i} className="insideToggle" ref='insideToggle' onClick={this.smallTitleClick}>
+                                            <p key={i} className='nameDiv'>
+                                            英雄详情：</p>
+                                            {this.state.onOff ? <span>姓名：{name}</span> : null}
+                                        </div>
+                                    )
                             })
                         }
-                    </ol>
+                        {
+                            sex.map((sex, i)=>{
+                                    return (
+                                        <div key={i}>
+                                            {this.state.onOff ? <span>性别：{sex}</span> : null}
+                                        </div>
+                                    )
+                            })
+                        }
+                        {
+                            like.map((like, i)=>{
+                                    return (
+                                        <div key={i}>
+                                            {this.state.onOff ? <span>特长：{like}</span> : null}
+                                        </div>
+                                    )
+                            })
+                        }
+                    </div>
                 )
             }
         }
@@ -65,22 +149,23 @@
             constructor(props){
                 super(props)
                 this.state={
-                    onOffsmallTitle:true
+                    array:[1, 0, 0, 0]
                 }
-                this.smallTitleClick = this.smallTitleClick.bind(this)
+                this.smallTitleClickList = this.smallTitleClickList.bind(this)
             }
-            smallTitleClick(){
-                this.setState({
-                    onOffsmallTitle:!this.state.onOffsmallTitle
-                })
-                let smallTitle = document.querySelectorAll('ol .smallTitle')
-                let active = document.querySelectorAll('ol .smallTitle .active')
-                let len = active.length
-                for (let i=0;i<len; i++) {
-                    active.onclick = function fn() {
-                        active.style.display='none'
+            smallTitleClickList(idx){
+                console.log(idx)
+                let array = this.state.array.map((v, i)=>{
+                    if(i == idx){
+                        // console.log(i)
+                        return true
+                    }else{
+                        return false
                     }
-                }
+                })
+                this.setState({
+                    array
+                })
             }
             render(){
                 return(
@@ -91,18 +176,17 @@
                                 let sex = this.props.keyword[i].sex
                                 let like = this.props.keyword[i].like
                                 return(
-                                    <li key={i} onClick={this.smallTitleClick}>
-                                        姓名：{name}
+                                    <li key={i} >
+                                        <Info infoName={name} infoSex={sex} infoLike={like} active={this.state.array[i]} smallTitleClickList={this.smallTitleClickList} idx={i} />
                                     </li>
                                 )
                             })
                         }
-                        {<Info info={this.props.keyword} />}
                     </ol>
                 )
             }
         }
-
+        // Wrap的子组件
         class Con extends React.Component{
             constructor(props){
                 super(props)
@@ -139,6 +223,7 @@
                 return true
             }
             handleClick(){
+                // console.log(this.props.index)
                 let onOff = !this.state.onOff
                 this.setState({
                     onOff:onOff
@@ -152,7 +237,6 @@
                 return(
                     <div>
                         <h2 onClick={this.handleClick}>{this.props.name}</h2>
-                        {/* this.state.onOff?<List keyword={this.props.list} />:null */}
                         <div className='toggle' ref='toggle'>
                             <List keyword={this.props.list} />
                         </div>
@@ -160,7 +244,7 @@
                 )
             }
         }
-
+        // Con的父组件
         class Wrap extends React.Component{
             constructor(props){
                 super(props)
@@ -173,7 +257,7 @@
                 return dataList
             }
             handleChangeList(index){
-                // console.log(this )
+                // console.log(index)
                 let arr = this.state.arr.map((v, i)=>{
                     if(i == index){
                         // console.log(i)
