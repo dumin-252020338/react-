@@ -17,6 +17,9 @@
         .btn2{
             background-color: pink;
         }
+        p{
+            background-color: rgb(150, 197, 95);
+        }
     </style>
 </head>
 <body>
@@ -28,34 +31,92 @@
     <script src="./node_modules/react/umd/react.development.js"></script>
     <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
     <script type="text/babel">
+
+        class Content extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                let arrInfo = this.props.arrInfo
+                let idx = 0
+                    idx++
+                return (
+                    <div className='divCon'>
+                        <p>第{idx}输入</p>
+                        {
+                            arrInfo.map((v, i)=>{
+                                return(
+                                    <p key={i}>
+                                        {v}
+                                    </p>
+                                )
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
         class Loninout extends React.Component{
             constructor(props){
                 super(props);
                 this.state = {
                     isLogining:false,
+                    arr:[],
+                    myValue:'',
+                    time:[]
                 };
                 this.loginClick = this.loginClick.bind(this);
                 this.logoutClick = this.logoutClick.bind(this);
+                this.btnClick = this.btnClick.bind(this);
             }
             loginClick(){
-                this.setState({ isLogining:true})
+                this.setState({ 
+                    isLogining: !this.state.isLogining
+                })
             }
             logoutClick(){
-                this.setState({ isLogining:false})
+                this.setState({ 
+                    isLogining:!this.state.isLogining
+                })
+            }
+            btnClick(){
+                let value =parseInt(this.refs.input.value)
+                    let newArr = this.state.arr
+                    let timeArr = this.state.time
+                    let nowTime=(new Date()).toLocaleString()
+                function checkRate(value) { 
+                    let reg = /^[0-9]+.?[0-9]*/;//判断字符串是否为数字//判断正整数/[1−9]+[0−9]∗]∗/;//判断字符串是否为数字//判断正整数/[1−9]+[0−9]∗]∗/ 
+                    if (!reg.test(value)) { 
+                        alert('请输入数字'); 
+                        return false
+                    }
+                    newArr.push(nowTime, value)
+                }
+                checkRate(value)
+                this.setState({ 
+                    arr:newArr,
+                    // time:timeArr
+                })
+                this.refs.input.value = ''
             }
             render(){
                 const isLogining = this.state.isLogining
                 let button =null
-                if(isLogining){
-                    // console.log(this);                    
+                if(isLogining){                
                     // console.log(this.logoutClick);
                     button = <LogoutButton onClick={this.logoutClick} />
                 }else{
                     // console.log(this.loginClick);
                     button = <LoginButton onClick={this.loginClick} />
                 }
-                console.log(button)
-                return <div><Con isLogining={isLogining} />{button}</div>
+                return (
+                    <div>
+                        <Con isLogining={isLogining} />{button}
+                        <input type='text' placeholder='请输入' ref='input' />
+                        <button onClick={this.btnClick}>获取</button>
+                        <Content width={100} arrInfo={this.state.arr}  />
+                    </div>
+                )
             }
         }
         //登录内容
