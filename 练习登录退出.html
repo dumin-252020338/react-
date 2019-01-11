@@ -38,11 +38,8 @@
             }
             render(){
                 let arrInfo = this.props.arrInfo
-                let idx = 0
-                    idx++
                 return (
                     <div className='divCon'>
-                        <p>第{idx}输入</p>
                         {
                             arrInfo.map((v, i)=>{
                                 return(
@@ -63,7 +60,6 @@
                     isLogining:false,
                     arr:[],
                     myValue:'',
-                    time:[]
                 };
                 this.loginClick = this.loginClick.bind(this);
                 this.logoutClick = this.logoutClick.bind(this);
@@ -80,22 +76,20 @@
                 })
             }
             btnClick(){
+                let newArr = this.state.arr
                 let value =parseInt(this.refs.input.value)
-                    let newArr = this.state.arr
-                    let timeArr = this.state.time
-                    let nowTime=(new Date()).toLocaleString()
+                let nowTime=(new Date()).toLocaleString()
                 function checkRate(value) { 
                     let reg = /^[0-9]+.?[0-9]*/;//判断字符串是否为数字//判断正整数/[1−9]+[0−9]∗]∗/;//判断字符串是否为数字//判断正整数/[1−9]+[0−9]∗]∗/ 
                     if (!reg.test(value)) { 
                         alert('请输入数字'); 
                         return false
                     }
-                    newArr.push(nowTime, value)
+                    newArr.push('第'+(1+newArr.length/3) +'次输入信息如下：', '时间：'+ nowTime, '内容：'+ value)
                 }
                 checkRate(value)
                 this.setState({ 
                     arr:newArr,
-                    // time:timeArr
                 })
                 this.refs.input.value = ''
             }
@@ -114,7 +108,7 @@
                         <Con isLogining={isLogining} />{button}
                         <input type='text' placeholder='请输入' ref='input' />
                         <button onClick={this.btnClick}>获取</button>
-                        <Content width={100} arrInfo={this.state.arr}  />
+                        <Content arrInfo={this.state.arr} />
                     </div>
                 )
             }
