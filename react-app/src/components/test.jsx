@@ -6,8 +6,8 @@ class Test extends Component {
         this.state = {
             text: '',
             textArr: [],
-            select: ['上海', '北京', '深圳', '广州'],
-            selectArr: [],
+            selectArr: ['上海', '北京', '深圳', '广州'],
+            select: '',
         }
         this.handleClick = this.handleClick.bind(this)
         this.onChangeText = this.onChangeText.bind(this)
@@ -18,7 +18,7 @@ class Test extends Component {
         });
     }
     handleClick() {
-        console.log(this.refs.text.value)
+        // console.log(this.refs.text.value)
         let textArr = this.state.textArr
             textArr.push(this.refs.text.value)
         this.setState({
@@ -30,11 +30,14 @@ class Test extends Component {
         this.setState({
             select: e.target.value, 
         });
+        console.log(this.state.select)
+        console.log(this.state)
+
     }
     handleClickSelect = () => {
         // let selectArr = this.state.select
             // selectArr.push(this.refs.select.value)
-        console.log(this.state.select)
+        // console.log(this.state.select)
 
         // this.setState({
             // selectArr: selectArr,
@@ -70,11 +73,11 @@ class Test extends Component {
                     <div className="output">
                         内容如下：
                     </div>
-                    <select>
+                    <select value={this.state.select} onChange={this.onChangeSelect}>
                         {
-                            this.state.select.map((v, i) => { 
+                            this.state.selectArr.map((v, i) => { 
                                 return (
-                                    <option key={i} value={this.state.select} onChange={this.onChangeSelect}>{v}</option>
+                                    <option key={i}>{v}</option>
                                 )
                             })
                         }
